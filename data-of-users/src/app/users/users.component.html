@@ -1,0 +1,40 @@
+ <!-- <h2>My Users</h2>
+  <ul class="users">
+    <li *ngFor="let user of users">
+      <button [class.selected]="user === selectedUser" type="button" (click)="onSelect(user)">
+        <span class="badge">{{user.id}}</span>
+        <span class="name">{{user.name}}</span>
+      </button>
+    </li>
+  </ul> -->
+
+  <!-- <div *ngIf="selectedUser">
+    <h2>{{selectedUser.name | uppercase}} Details</h2>
+    <div>id: {{selectedUser.id}}</div>
+    <div>
+      <label for="user-name">User name: </label>
+      <input id="user-name" [(ngModel)]="selectedUser.name" placeholder="name">
+    </div>
+  </div> -->
+  <!-- <app-user-detail [user]="selectedUser"></app-user-detail> -->
+
+  <h2>My Users</h2>
+  <ul class="users">
+    <li *ngFor="let user of users">
+      <a routerLink="/detail/{{user.id}}">
+        <span class="badge">{{user.id}}</span> {{user.name}}
+      </a>
+      <button type="button" class="delete" title="delete user"
+      (click)="delete(user)">x</button>
+    </li>
+  </ul>
+
+  <div>
+    <label for="new-user">User name: </label>
+    <input id="new-user" #userName />
+  
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button type="button" class="add-button" (click)="add(userName.value); userName.value=''">
+      Add user
+    </button>
+  </div>
